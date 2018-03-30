@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Spirala1</string>
+    <string name="dDodajKategoriju">Dodaj kategoriju</string>
+    <string name="dPretraga">Pretraga</string>
+    <string name="dDodajKnjigu">Dodaj knjigu</string>
+    <string name="tekstPretraga">Tekst pretraga</string>
+    <string name="dUpisiknjigu">Upiši knjigu</string>
+    <string name="dNadjisliku">Nađi sliku</string>
+    <string name="dPonisti">Poništi</string>
+    <string name="dPovratak">Povratak</string>
+    <string name="title_activity_lista_knjiga_akt">ListaKnjigaAkt</string>
+</resources>
