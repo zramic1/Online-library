@@ -1,4 +1,4 @@
-package ba.unsa.etf.rma.zerina.spirala1;
+package ba.unsa.etf.rma.zerina.rmaspirala2;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -10,13 +10,12 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.rmaspirala2.R;
-
 /**
- * Created by zerin on 3/26/2018.
+ * Created by zerin on 4/4/2018.
  */
 
 public class AdapterZaListuKnjiga extends BaseAdapter {
+
     Context c;
     ArrayList<Knjiga> knjigeZaIspis;
 

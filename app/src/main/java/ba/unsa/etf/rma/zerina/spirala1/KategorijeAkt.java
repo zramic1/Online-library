@@ -14,6 +14,8 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
+import ba.unsa.etf.rma.zerina.rmaspirala2.R;
+
 public class KategorijeAkt extends AppCompatActivity{
 
     boolean postoji=false;

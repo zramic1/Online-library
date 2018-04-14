@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+     <RelativeLayout
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         tools:layout_editor_absoluteX="8dp"
+         tools:layout_editor_absoluteY="8dp">
+
+         <EditText
+             android:id="@+id/tekstPretraga"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true"
+             android:layout_below="@+id/dKategorije"
+             android:layout_toLeftOf="@+id/dPretraga"
+             android:layout_toStartOf="@+id/dPretraga"
+             android:text=""
+             android:textAlignment="center" />
+
+         <Button
+             android:id="@+id/dPretraga"
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:layout_alignParentEnd="true"
+             android:layout_alignParentRight="true"
+             android:layout_alignTop="@+id/tekstPretraga"
+             android:text="@string/dPretraga" />
+
+         <Button
+             android:id="@+id/dDodajKategoriju"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_alignTop="@id/dDodajKnjigu"
+             android:layout_alignBottom="@id/dDodajKnjigu"
+             android:layout_alignParentLeft="true"
+             android:layout_below="@id/tekstPretraga"
+             android:layout_alignParentStart="true"
+             android:text="@string/dDodajKategoriju"
+             />
+
+         <Button
+             android:id="@+id/dDodajKnjigu"
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="95dp"
+             android:layout_alignParentEnd="true"
+             android:layout_alignParentRight="true"
+             android:text="@string/dDodajKnjigu" />
+
+         <ListView
+             android:id="@+id/listaKategorija"
+             android:layout_width="match_parent"
+             android:layout_height="350dp"
+             android:layout_alignParentBottom="true"
+             android:layout_below="@id/dDodajKnjigu"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentRight="true"
+
+             app:layout_constraintVertical_bias="0.0" />
+
+         <Button
+             android:id="@+id/dKategorije"
+             android:layout_width="150dp"
+             android:layout_height="wrap_content"
+             android:layout_alignBaseline="@+id/dAutori"
+             android:layout_alignBottom="@+id/dAutori"
+             android:layout_alignParentEnd="true"
+             android:layout_alignParentRight="true"
+             android:layout_toEndOf="@+id/dAutori"
+             android:layout_toRightOf="@+id/dAutori"
+             android:text="@string/dKategorije" />
+
+         <Button
+             android:id="@+id/dAutori"
+             android:layout_width="196dp"
+             android:layout_height="wrap_content"
+             android:layout_alignParentLeft="true"
+             android:layout_alignParentStart="true"
+             android:layout_alignParentTop="true"
+             android:text="@string/dAutori"
+             tools:layout_editor_absoluteX="81dp"
+             tools:layout_editor_absoluteY="16dp" />
+     </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

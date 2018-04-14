@@ -4,74 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ba.unsa.etf.rma.zerina.spirala1.KategorijeAkt"
-    tools:layout_editor_absoluteY="81dp">
+    tools:context="ba.unsa.etf.rma.zerina.rmaspirala2.KategorijeAkt">
 
-    <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="495dp"
+    <FrameLayout
+        android:id="@+id/mjesto1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/tekstPretraga"
-            android:layout_width="200dp"
-            android:layout_height="50dp"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:textAlignment="center" />
+    </FrameLayout>
 
-        <Button
-            android:id="@+id/dPretraga"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginLeft="14dp"
-            android:layout_marginStart="14dp"
-            android:layout_toEndOf="@+id/tekstPretraga"
-            android:layout_toRightOf="@+id/tekstPretraga"
-            android:text="@string/dPretraga" />
-
-        <Button
-            android:id="@+id/dDodajKategoriju"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/tekstPretraga"
-            android:layout_alignRight="@+id/tekstPretraga"
-            android:layout_below="@+id/tekstPretraga"
-            android:layout_marginTop="11dp"
-            android:text="@string/dDodajKategoriju" />
-
-        <Button
-            android:id="@+id/dDodajKnjigu"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@+id/dDodajKategoriju"
-            android:layout_alignBottom="@+id/dDodajKategoriju"
-            android:layout_alignLeft="@+id/dPretraga"
-            android:layout_alignStart="@+id/dPretraga"
-            android:text="@string/dDodajKnjigu" />
-
-        <ListView
-            android:id="@+id/listaKategorija"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_below="@+id/dDodajKategoriju"
-            android:layout_marginTop="11dp"
-            app:layout_constraintVertical_bias="0.0"/>
-
-
-    </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
