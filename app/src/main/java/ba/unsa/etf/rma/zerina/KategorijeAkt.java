@@ -1,17 +1,21 @@
-package ba.unsa.etf.rma.zerina.rmaspirala2;
+package ba.unsa.etf.rma.zerina;
 
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import ba.unsa.etf.rma.zerina.R;
+
+/**
+ * Created by zerin on 5/14/2018.
+ */
 
 public class KategorijeAkt extends AppCompatActivity {
 
     public static boolean siri = false;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,26 +29,27 @@ public class KategorijeAkt extends AppCompatActivity {
         if(fragmentKnjige != null){
             siri = true;
             FragmentTransaction ft = fm.beginTransaction();
-            FragmentKnjige fk = new FragmentKnjige();
+            KnjigeFragment fk = new KnjigeFragment();
             fragmentDodavanjeKnjige.setVisibility(View.INVISIBLE);
 
             ft.replace(R.id.mjesto2, fk);
 
-            FragmentLista fl = new FragmentLista();
+            ListeFragment fl = new ListeFragment();
             ft.replace(R.id.mjesto1, fl, "lista");
             ft.commit();
         }
 
-       else{
+        else{
             siri = false;
-            FragmentLista fragmentLista = (FragmentLista) fm.findFragmentByTag("lista");
+            ListeFragment fragmentLista = (ListeFragment) fm.findFragmentByTag("lista");
             if(fragmentLista == null){
-                fragmentLista = new FragmentLista();
+                fragmentLista = new ListeFragment();
                 fm.beginTransaction().replace(R.id.mjesto1, fragmentLista, "lista").commit();
             }
             else {
                 fm.popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
             }
         }
+
     }
 }

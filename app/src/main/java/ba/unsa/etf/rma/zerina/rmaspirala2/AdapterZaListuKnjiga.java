@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import ba.unsa.etf.rma.zerina.R;
+
 /**
  * Created by zerin on 4/4/2018.
  */

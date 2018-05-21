@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RMASpirala2</string>
+    <string name="app_name">RMASpirala3</string>
     <string name="dDodajKategoriju">Dodaj kategoriju</string>
     <string name="dPretraga">Pretraga</string>
     <string name="dDodajKnjigu">Dodaj knjigu</string>
@@ -18,4 +18,6 @@
     <string name="broj">Broj knjiga:</string>
     <string name="nePostojiKategorija">Ne postoji niti jedna kategorija</string>
     <string name="unesiteSvePodatke">Morate unijeti sve podatke</string>
+    <string name="dodajKnjiguOnline">dodaj knjigu online</string>
+
 </resources>

@@ -1,8 +1,7 @@
-package ba.unsa.etf.rma.zerina.rmaspirala2;
+package ba.unsa.etf.rma.zerina;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -17,13 +16,12 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.R;
 
 /**
- * Created by zerin on 4/4/2018.
+ * Created by zerin on 5/14/2018.
  */
 
-public class FragmentLista extends Fragment {
+public class ListeFragment extends Fragment {
 
     boolean postoji=false;
     public static ArrayList<String> lista = new ArrayList<String>();
@@ -32,6 +30,7 @@ public class FragmentLista extends Fragment {
     boolean autorPostoji = false;
     MojAdapter adapter;
     boolean oznacenaKategorija = false;
+    boolean autorPostoji2 = false;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -51,6 +50,7 @@ public class FragmentLista extends Fragment {
         final ListView listView = (ListView) getView().findViewById(R.id.listaKategorija);
         Button dAutor = (Button) getView().findViewById(R.id.dAutori);
         Button dKategorije = (Button) getView().findViewById(R.id.dKategorije);
+        Button dDodavanjeOnline = (Button) getView().findViewById(R.id.dDodajOnline);
 
         dDodajKategoriju.setEnabled(false);
 
@@ -58,69 +58,96 @@ public class FragmentLista extends Fragment {
 
 
 
+        adapter = new MojAdapter(getActivity(), lista);
+
         dKategorije.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                adapter = new MojAdapter(getActivity(), lista);
+
                 listView.setAdapter(adapter);
 
                 dPretraga.setVisibility(View.VISIBLE);
                 dDodajKategoriju.setVisibility(View.VISIBLE);
                 tekstPretraga.setVisibility(View.VISIBLE);
 
-                dPretraga.setOnClickListener(new View.OnClickListener(){
-
-
-                    @Override
-                    public void onClick(View v) {
-
-                        adapter.getFilter().filter(tekstPretraga.getText());
-
-                        for (int i = 0; i < lista.size(); i++) {
-                            if (lista.get(i).toUpperCase().contains(tekstPretraga.getText().toString().toUpperCase())) {
-                                postoji=true;
-                            }
-                        }
-                        if(postoji==false) {
-                            dDodajKategoriju.setEnabled(true);
-                            dDodajKategoriju.setOnClickListener(new View.OnClickListener() {
-
-                                @Override
-                                public void onClick(View v) {
-                                    String s = tekstPretraga.getText().toString();
-                                    if(s != null && !s.isEmpty()) lista.add(s);
-                                    adapter.notifyDataSetChanged();
-                                    tekstPretraga.setText("");
-                                    dPretraga.performClick();
-
-                                }
-                            });
-                        }
-                        else dDodajKategoriju.setEnabled(false);
-                        postoji=false;
-                    }
-                });
 
 
             }
         });
+
+        dPretraga.setOnClickListener(new View.OnClickListener(){
+
+
+            @Override
+            public void onClick(View v) {
+
+                adapter.getFilter().filter(tekstPretraga.getText());
+
+                for (int i = 0; i < lista.size(); i++) {
+                    if (lista.get(i).toUpperCase().contains(tekstPretraga.getText().toString().toUpperCase())) {
+                        postoji=true;
+                    }
+                }
+                if(postoji==false) {
+                    dDodajKategoriju.setEnabled(true);
+                    dDodajKategoriju.setOnClickListener(new View.OnClickListener() {
+
+                        @Override
+                        public void onClick(View v) {
+                            String s = tekstPretraga.getText().toString();
+                            if(s != null && !s.isEmpty()) lista.add(s);
+                            adapter.notifyDataSetChanged();
+                            tekstPretraga.setText("");
+                            dPretraga.performClick();
+
+                        }
+                    });
+                }
+                else dDodajKategoriju.setEnabled(false);
+                postoji=false;
+            }
+        });
+
 
         autori = new ArrayList<Autor>();
 
 
         for(int i=0; i<listaKnjiga.brojElemenata();i++){
             autorPostoji = false;
-            for(int j=0; j<autori.size();j++){
-                if(listaKnjiga.vratiKnjigu(i).getAutor().toUpperCase().equals(autori.get(j).getIme().toUpperCase())){
-                    autori.get(j).setImaAutora(true);
-                    autori.get(j).setBrojKnjiga();
-                    autorPostoji = true;
-                }
+            if (listaKnjiga.vratiKnjigu(i).isVrstaKnjige()) {
+                for (int j = 0; j < autori.size(); j++) {
 
+                        if (listaKnjiga.vratiKnjigu(i).getAutor().toUpperCase().equals(autori.get(j).getImeiPrezime().toUpperCase())) {
+                            autori.get(j).setImaAutora(true);
+                            autori.get(j).setBrojKnjiga();
+                            autorPostoji = true;
+                        }
+
+                }
+                if (autorPostoji == false) {
+                    Autor a = new Autor(listaKnjiga.vratiKnjigu(i).getAutor());
+                    autori.add(a);
+                }
             }
-            if(autorPostoji == false){
-                Autor a = new Autor(listaKnjiga.vratiKnjigu(i).getAutor());
-                autori.add(a);
+        }
+
+        for(int i=0; i<listaKnjiga.brojElemenata(); i++){
+            if(!listaKnjiga.vratiKnjigu(i).isVrstaKnjige()) {
+                ArrayList<Autor> autors = listaKnjiga.vratiKnjigu(i).getAutori();
+                for(int j=0; j<autors.size();j++){
+                    autorPostoji2 = false;
+                    for (int k=0; k<autori.size(); k++){
+                        if(autors.get(j).getImeiPrezime().toUpperCase().equals(autori.get(k).getImeiPrezime().toUpperCase())){
+                            autori.get(k).setImaAutora(true);
+                            autori.get(k).setBrojKnjiga();
+                            autorPostoji2 = true;
+                        }
+                    }
+                    if(autorPostoji2 == false) {
+                        Autor aa = new Autor(autors.get(j).getImeiPrezime());
+                        autori.add(aa);
+                    }
+                }
             }
         }
 
@@ -149,12 +176,11 @@ public class FragmentLista extends Fragment {
 
                 if(lista.size() > 0) {
 
-                    FragmentDodavanjeKnjige fdk = new FragmentDodavanjeKnjige();
+                    DodavanjeKnjigeFragment fdk = new DodavanjeKnjigeFragment();
                     Bundle b = new Bundle();
                     b.putStringArrayList("lista", lista);
                     fdk.setArguments(b);
                     FragmentManager fm = getFragmentManager();
-
 
                     if (KategorijeAkt.siri == false)
                         fm.beginTransaction().replace(R.id.mjesto1, fdk).commit();
@@ -176,7 +202,7 @@ public class FragmentLista extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                FragmentKnjige fk = new FragmentKnjige();
+                KnjigeFragment fk = new KnjigeFragment();
                 oznacenaKategorija = false;
 
                 for(int i=0;i<lista.size();i++){
@@ -195,13 +221,12 @@ public class FragmentLista extends Fragment {
                 }
                 else {
                     oznaceno = "autor";
-                    poslati = autori.get(position).getIme();
+                    poslati = autori.get(position).getImeiPrezime();
                 }
                 b.putString("oznaceno", oznaceno);
                 b.putString("poslati", poslati);
                 fk.setArguments(b);
                 FragmentManager fm = getFragmentManager();
-
 
                 if(KategorijeAkt.siri) fm.beginTransaction().replace(R.id.mjesto2,fk).commit();
                 else fm.beginTransaction().replace(R.id.mjesto1,fk).commit();
@@ -209,9 +234,37 @@ public class FragmentLista extends Fragment {
         });
 
 
+        dDodavanjeOnline.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(lista.size() > 0) {
+                    FragmentOnline fo = new FragmentOnline();
+                    Bundle b = new Bundle();
+                    b.putStringArrayList("lista", lista);
+                    fo.setArguments(b);
+                    FragmentManager fm = getFragmentManager();
 
+                    if (!KategorijeAkt.siri)
+                        fm.beginTransaction().replace(R.id.mjesto1, fo).commit();
+
+                    else {
+                        FrameLayout m1 = (FrameLayout) getActivity().findViewById(R.id.mjesto1);
+                        m1.setVisibility(View.GONE);
+                        FrameLayout m2 = (FrameLayout) getActivity().findViewById(R.id.mjesto2);
+                        m2.setVisibility(View.GONE);
+                        FrameLayout m3 = (FrameLayout) getActivity().findViewById(R.id.mjesto3);
+                        m3.setVisibility(View.VISIBLE);
+                        fm.beginTransaction().replace(R.id.mjesto3, fo).commit();
+                    }
+                }
+                else{
+                    Toast.makeText(getActivity(), R.string.nePostojiKategorija, Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
 
 
     }
+
 }

@@ -21,7 +21,8 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.rmaspirala2.R;
+import ba.unsa.etf.rma.zerina.R;
+
 
 public class ListaKnjigaAkt extends AppCompatActivity {
 

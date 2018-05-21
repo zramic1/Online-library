@@ -1,4 +1,4 @@
-package ba.unsa.etf.rma.zerina.rmaspirala2;
+package ba.unsa.etf.rma.zerina;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -22,15 +22,13 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.R;
-
 import static android.app.Activity.RESULT_OK;
 
 /**
- * Created by zerin on 4/4/2018.
+ * Created by zerin on 5/14/2018.
  */
 
-public class FragmentDodavanjeKnjige extends Fragment {
+public class DodavanjeKnjigeFragment extends Fragment {
 
     ArrayAdapter<String> adapter;
     ArrayList<String> l;
@@ -69,7 +67,7 @@ public class FragmentDodavanjeKnjige extends Fragment {
         dPonisti.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentLista fl = new FragmentLista();
+                ListeFragment fl = new ListeFragment();
                 FragmentManager fm = getFragmentManager();
 
                 if(KategorijeAkt.siri){
@@ -82,6 +80,7 @@ public class FragmentDodavanjeKnjige extends Fragment {
                 }
 
                 fm.beginTransaction().replace(R.id.mjesto1, fl).commit();
+
             }
         });
 
@@ -98,12 +97,12 @@ public class FragmentDodavanjeKnjige extends Fragment {
         dUpisiKnjigu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                 String nazivK = nazivKnjige.getText().toString();
-                 String imeA = imeAutora.getText().toString();
+                String nazivK = nazivKnjige.getText().toString();
+                String imeA = imeAutora.getText().toString();
 
                 if(pom != null && !nazivK.isEmpty() && !imeA.isEmpty()) {
                     Knjiga k = new Knjiga(pom, nazivK, imeA, sKategorijaKnjige.getSelectedItem().toString());
-                    FragmentLista.listaKnjiga.dodajKnjigu(k);
+                    ListeFragment.listaKnjiga.dodajKnjigu(k);
                     nazivKnjige.setText("");
                     imeAutora.setText("");
                     naslovnaStr.setImageBitmap(null);

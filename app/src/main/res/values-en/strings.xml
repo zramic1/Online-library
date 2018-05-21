@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">RMASpirala2</string>
+    <string name="app_name">RMASpirala3</string>
     <string name="dDodajKategoriju">Add category</string>
     <string name="dPretraga">Search</string>
     <string name="dDodajKnjigu">Add a book</string>
     <string name="tekstPretraga">Text search</string>
     <string name="dUpisiknjigu">Add book</string>
     <string name="dNadjisliku">Find an image</string>
-    <string name="dPonisti">Cancle</string>
+    <string name="dPonisti">Cancel</string>
     <string name="dPovratak">Back</string>
     <string name="dKategorije">Categories</string>
     <string name="dAutori">Authors</string>
@@ -19,4 +19,5 @@
     <string name="broj">Number of books:</string>
     <string name="nePostojiKategorija">There is no category</string>
     <string name="unesiteSvePodatke">You must enter all data</string>
+    <string name="dodajKnjiguOnline">add book online</string>
 </resources>

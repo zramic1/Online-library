@@ -1,28 +1,25 @@
-package ba.unsa.etf.rma.zerina.spirala1;
+package ba.unsa.etf.rma.zerina;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.R;
-
 
 /**
- * Created by zerin on 3/24/2018.
+ * Created by zerin on 5/14/2018.
  */
 
 public class MojAdapter extends BaseAdapter implements Filterable {
 
     Context c;
-    ArrayList<String>kategorije, pom;
+    ArrayList<String> kategorije, pom;
     MojFilter mf;
 
 
@@ -106,8 +103,8 @@ public class MojAdapter extends BaseAdapter implements Filterable {
         }
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-                kategorije = (ArrayList<String>)results.values;
-                notifyDataSetChanged();
+            kategorije = (ArrayList<String>)results.values;
+            notifyDataSetChanged();
 
 
         }

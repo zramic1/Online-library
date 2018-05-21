@@ -1,4 +1,4 @@
-package ba.unsa.etf.rma.zerina.rmaspirala2;
+package ba.unsa.etf.rma.zerina;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
@@ -13,15 +13,14 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.R;
 
 /**
- * Created by zerin on 4/5/2018.
+ * Created by zerin on 5/15/2018.
  */
 
-public class FragmentKnjige extends Fragment {
+public class KnjigeFragment extends Fragment {
 
-    ArrayList<Knjiga>knjige1;
+    ArrayList<Knjiga> knjige1;
     ArrayList<Knjiga>knjige2;
     String oznaceno = "";
     String poslati = "";
@@ -51,9 +50,9 @@ public class FragmentKnjige extends Fragment {
         if(oznaceno.equals("kategorija")) {
             knjige1 = new ArrayList<Knjiga>();
 
-            for (int i = 0; i < FragmentLista.listaKnjiga.brojElemenata(); i++) {
-                if (FragmentLista.listaKnjiga.vratiKnjigu(i).getKategorija().toUpperCase().equals(poslati.toUpperCase())) {
-                    knjige1.add(FragmentLista.listaKnjiga.vratiKnjigu(i));
+            for (int i = 0; i < ListeFragment.listaKnjiga.brojElemenata(); i++) {
+                if (ListeFragment.listaKnjiga.vratiKnjigu(i).getKategorija().toUpperCase().equals(poslati.toUpperCase())) {
+                    knjige1.add(ListeFragment.listaKnjiga.vratiKnjigu(i));
                 }
             }
 
@@ -66,9 +65,22 @@ public class FragmentKnjige extends Fragment {
         else{
             knjige2 = new ArrayList<Knjiga>();
 
-            for (int i = 0; i < FragmentLista.listaKnjiga.brojElemenata(); i++) {
-                if (FragmentLista.listaKnjiga.vratiKnjigu(i).getAutor().toUpperCase().equals(poslati.toUpperCase())) {
-                    knjige2.add(FragmentLista.listaKnjiga.vratiKnjigu(i));
+            for (int i = 0; i < ListeFragment.listaKnjiga.brojElemenata(); i++) {
+                if(ListeFragment.listaKnjiga.vratiKnjigu(i).isVrstaKnjige()) {
+                    if (ListeFragment.listaKnjiga.vratiKnjigu(i).getAutor().toUpperCase().equals(poslati.toUpperCase())) {
+                        knjige2.add(ListeFragment.listaKnjiga.vratiKnjigu(i));
+                    }
+                }
+            }
+
+            for (int i = 0; i < ListeFragment.listaKnjiga.brojElemenata(); i++) {
+                if(!ListeFragment.listaKnjiga.vratiKnjigu(i).isVrstaKnjige()) {
+                    ArrayList<Autor> autors = ListeFragment.listaKnjiga.vratiKnjigu(i).getAutori();
+                    for (int j=0; j<autors.size(); j++) {
+                        if (autors.get(j).getImeiPrezime().toUpperCase().equals(poslati.toUpperCase())) {
+                            knjige2.add(ListeFragment.listaKnjiga.vratiKnjigu(i));
+                        }
+                    }
                 }
             }
 
@@ -82,17 +94,17 @@ public class FragmentKnjige extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 if(oznaceno.equals("kategorija")) {
-                    for (int i = 0; i < FragmentLista.listaKnjiga.brojElemenata(); i++) {
-                        if (knjige1.get(position).getNaziv().toUpperCase().equals(FragmentLista.listaKnjiga.vratiKnjigu(i).getNaziv().toUpperCase())) {
-                            FragmentLista.listaKnjiga.vratiKnjigu(i).setOznacena(true);
+                    for (int i = 0; i < ListeFragment.listaKnjiga.brojElemenata(); i++) {
+                        if (knjige1.get(position).getNaziv().toUpperCase().equals(ListeFragment.listaKnjiga.vratiKnjigu(i).getNaziv().toUpperCase())) {
+                            ListeFragment.listaKnjiga.vratiKnjigu(i).setOznacena(true);
                         }
                     }
                     listaKnjiga.setAdapter(mojAdapter);
                 }
                 else{
-                    for (int i = 0; i < FragmentLista.listaKnjiga.brojElemenata(); i++) {
-                        if (knjige2.get(position).getNaziv().toUpperCase().equals(FragmentLista.listaKnjiga.vratiKnjigu(i).getNaziv().toUpperCase())) {
-                            FragmentLista.listaKnjiga.vratiKnjigu(i).setOznacena(true);
+                    for (int i = 0; i < ListeFragment.listaKnjiga.brojElemenata(); i++) {
+                        if (knjige2.get(position).getNaziv().toUpperCase().equals(ListeFragment.listaKnjiga.vratiKnjigu(i).getNaziv().toUpperCase())) {
+                            ListeFragment.listaKnjiga.vratiKnjigu(i).setOznacena(true);
                         }
                     }
                     listaKnjiga.setAdapter(mojAdapter1);
@@ -103,9 +115,10 @@ public class FragmentKnjige extends Fragment {
         dPovratak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentLista fl = new FragmentLista();
+                ListeFragment fl = new ListeFragment();
                 FragmentManager fm = getFragmentManager();
                 fm.beginTransaction().replace(R.id.mjesto1, fl).commit();
+
             }
         });
 

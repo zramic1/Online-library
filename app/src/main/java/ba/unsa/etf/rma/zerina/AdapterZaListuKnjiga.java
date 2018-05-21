@@ -1,6 +1,8 @@
-package ba.unsa.etf.rma.zerina.spirala1;
+package ba.unsa.etf.rma.zerina;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,16 +10,20 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.R;
 
 
 /**
- * Created by zerin on 3/26/2018.
+ * Created by zerin on 5/14/2018.
  */
 
 public class AdapterZaListuKnjiga extends BaseAdapter {
+
     Context c;
     ArrayList<Knjiga> knjigeZaIspis;
 
@@ -72,9 +78,36 @@ public class AdapterZaListuKnjiga extends BaseAdapter {
         TextView eAutor = (TextView) v.findViewById(R.id.eAutor);
 
         eNaziv.setText(knjigeZaIspis.get(position).getNaziv());
-        eAutor.setText(knjigeZaIspis.get(position).getAutor());
-        eNaslovna.setImageBitmap(knjigeZaIspis.get(position).getSlika());
+        if(knjigeZaIspis.get(position).isVrstaKnjige()) {
+            eAutor.setText(knjigeZaIspis.get(position).getAutor());
+        }
+        else {
+            ArrayList<Autor> autors = knjigeZaIspis.get(position).getAutori();
 
+            StringBuilder builder = new StringBuilder();
+            for (int i=0; i<autors.size(); i++) {
+                builder.append(autors.get(i).getImeiPrezime() + "\n");
+            }
+
+            eAutor.setText(builder.toString());
+        }
+        if(knjigeZaIspis.get(position).isVrstaKnjige()) {
+            eNaslovna.setImageBitmap(knjigeZaIspis.get(position).getSlika());
+        }
+        else{
+            Picasso.with(getC()).load(knjigeZaIspis.get(position).getSlika1().toString()).placeholder(R.mipmap.ic_launcher).error(R.mipmap.ic_launcher)
+                    .into(eNaslovna, new com.squareup.picasso.Callback() {
+                        @Override
+                        public void onSuccess() {
+
+                        }
+
+                        @Override
+                        public void onError() {
+
+                        }
+                    });
+        }
         if(knjigeZaIspis.get(position).isOznacena())
             v.setBackgroundResource(R.color.bojaZaElementListe);
 

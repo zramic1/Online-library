@@ -1,19 +1,17 @@
-package ba.unsa.etf.rma.zerina.rmaspirala2;
+package ba.unsa.etf.rma.zerina;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.R;
 
 /**
- * Created by zerin on 4/5/2018.
+ * Created by zerin on 5/14/2018.
  */
 
 public class AdapterZaAutora extends BaseAdapter {
@@ -70,7 +68,7 @@ public class AdapterZaAutora extends BaseAdapter {
         TextView nazivAutora = (TextView) v.findViewById(R.id.nazivAutora);
         TextView brojKnjiga = (TextView) v.findViewById(R.id.upisiBrojKnjiga);
 
-        nazivAutora.setText(autorZaIspis.get(position).getIme());
+        nazivAutora.setText(autorZaIspis.get(position).getImeiPrezime());
         String s = String.valueOf(autorZaIspis.get(position).getBrojKnjiga());
         brojKnjiga.setText(s);
 

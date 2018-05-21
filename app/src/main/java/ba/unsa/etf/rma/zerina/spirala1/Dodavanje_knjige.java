@@ -20,7 +20,8 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import ba.unsa.etf.rma.zerina.rmaspirala2.R;
+import ba.unsa.etf.rma.zerina.R;
+
 
 /**
  * Created by zerin on 3/25/2018.

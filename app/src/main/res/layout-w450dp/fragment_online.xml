@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <Spinner
+            android:id="@+id/sKategorije"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <EditText
+            android:id="@+id/tekstUpit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/sKategorije"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="38dp" />
+
+        <Button
+            android:id="@+id/dRun​"
+            android:layout_width="184dp"
+            android:layout_height="43dp"
+            android:layout_alignLeft="@+id/sKategorije"
+            android:layout_alignStart="@+id/sKategorije"
+            android:layout_below="@+id/tekstUpit"
+            android:layout_marginTop="15dp"
+            android:text="@string/dPretraga" />
+
+        <Button
+            android:id="@+id/dAdd"
+            android:layout_width="184dp"
+            android:layout_height="44dp"
+            android:layout_alignTop="@+id/dRun​"
+            android:layout_toEndOf="@+id/dRun​"
+            android:layout_toRightOf="@+id/dRun​"
+            android:text="@string/dDodajKnjigu" />
+
+        <Spinner
+            android:id="@+id/sRezultat"
+            android:layout_width="368dp"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/dAdd"
+            android:layout_alignRight="@+id/dAdd"
+            android:layout_below="@+id/dAdd"
+            android:layout_marginTop="12dp" />
+
+        <Button
+            android:id="@+id/dPovratak​1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentStart="true"
+            android:text="@string/dPovratak" />
+
+    </RelativeLayout>
+
+
+</android.support.constraint.ConstraintLayout>

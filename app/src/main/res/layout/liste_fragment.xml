@@ -54,12 +54,21 @@
              android:layout_alignParentRight="true"
              android:text="@string/dDodajKnjigu" />
 
+         <Button
+             android:id="@+id/dDodajOnline"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_below="@id/dDodajKnjigu"
+             android:layout_alignParentEnd="true"
+             android:layout_alignParentRight="true"
+             android:text="@string/dodajKnjiguOnline"/>
+
          <ListView
              android:id="@+id/listaKategorija"
              android:layout_width="match_parent"
              android:layout_height="350dp"
              android:layout_alignParentBottom="true"
-             android:layout_below="@id/dDodajKnjigu"
+             android:layout_below="@id/dDodajOnline"
              android:layout_alignParentLeft="true"
              android:layout_alignParentRight="true"
 
