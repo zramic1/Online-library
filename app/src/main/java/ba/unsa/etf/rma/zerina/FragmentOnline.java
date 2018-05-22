@@ -186,6 +186,7 @@ public class FragmentOnline extends Fragment implements DohvatiKnjige.IDohvatiKn
                                 ListeFragment.listaKnjiga.dodajKnjigu(pomocnaListaKnjiga.get(i));
                                 Toast.makeText(getActivity(), R.string.Toast, Toast.LENGTH_SHORT).show();
                             }
+                            else Toast.makeText(getActivity(), R.string.knjigaPostoji, Toast.LENGTH_SHORT).show();
                         }
 
                     }
