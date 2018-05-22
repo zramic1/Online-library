@@ -153,14 +153,39 @@ public class FragmentOnline extends Fragment implements DohvatiKnjige.IDohvatiKn
                     for (int i = 0; i < pomocnaListaKnjiga.size(); i++) {
                         if (nazivKnjige.equals(pomocnaListaKnjiga.get(i).getNaziv())) {
                             pomocnaListaKnjiga.get(i).setKategorija(kategorija);
+                            ArrayList<Autor> autors = pomocnaListaKnjiga.get(i).getAutori();
                             postojiKnjiga = false;
                             for (int j = 0; j < ListeFragment.listaKnjiga.brojElemenata(); j++) {
-                                if (nazivKnjige.equals(ListeFragment.listaKnjiga.vratiKnjigu(j).getNaziv()))
-                                    postojiKnjiga = true;
+                                if (nazivKnjige.equals(ListeFragment.listaKnjiga.vratiKnjigu(j).getNaziv())){
+                                    if(!ListeFragment.listaKnjiga.vratiKnjigu(j).isVrstaKnjige()){
+                                        ArrayList<Autor> autors1 = ListeFragment.listaKnjiga.vratiKnjigu(j).getAutori();
+                                        if(autors.size() == autors1.size()){
+                                            int brojac = 0;
+                                            for(int l=0; l<autors.size(); l++){
+                                                if(autors.get(l).getImeiPrezime().equalsIgnoreCase(autors1.get(l).getImeiPrezime())){
+                                                    brojac++;
+                                                }
+                                                else {
+                                                    postojiKnjiga = false;
+                                                    break;
+                                                }
+                                            }
+                                            if (brojac == autors.size()) postojiKnjiga = true;
+
+                                        }
+                                    }
+                                    else if(autors.size() == 1){
+                                        if(autors.get(0).getImeiPrezime().equalsIgnoreCase(ListeFragment.listaKnjiga.vratiKnjigu(j).getAutor())){
+                                            postojiKnjiga = true;
+                                        }
+                                    }
+                                }
+
                             }
-                            if (!postojiKnjiga)
+                            if (!postojiKnjiga) {
                                 ListeFragment.listaKnjiga.dodajKnjigu(pomocnaListaKnjiga.get(i));
                                 Toast.makeText(getActivity(), R.string.Toast, Toast.LENGTH_SHORT).show();
+                            }
                         }
 
                     }

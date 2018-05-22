@@ -20,4 +20,5 @@
     <string name="nePostojiKategorija">There is no category</string>
     <string name="unesiteSvePodatke">You must enter all data</string>
     <string name="dodajKnjiguOnline">add book online</string>
+    <string name="knjigaPostoji">The book already exists</string>
 </resources>

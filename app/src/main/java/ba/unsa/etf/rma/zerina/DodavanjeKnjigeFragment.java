@@ -102,13 +102,29 @@ public class DodavanjeKnjigeFragment extends Fragment {
 
                 if(pom != null && !nazivK.isEmpty() && !imeA.isEmpty()) {
                     Knjiga k = new Knjiga(pom, nazivK, imeA, sKategorijaKnjige.getSelectedItem().toString());
-                    ListeFragment.listaKnjiga.dodajKnjigu(k);
-                    nazivKnjige.setText("");
-                    imeAutora.setText("");
-                    naslovnaStr.setImageBitmap(null);
-                    pom = null;
+                    boolean postojiKnjiga = false;
+                    for(int i=0; i<ListeFragment.listaKnjiga.brojElemenata(); i++){
+                        if(ListeFragment.listaKnjiga.vratiKnjigu(i).getNaziv().equals(k.getNaziv())){
+                            if(!ListeFragment.listaKnjiga.vratiKnjigu(i).isVrstaKnjige()){
+                                ArrayList<Autor> autors = ListeFragment.listaKnjiga.vratiKnjigu(i).getAutori();
+                                if(autors.size() == 1){
+                                    if(autors.get(0).getImeiPrezime().equals(k.getAutor())) postojiKnjiga = true;
+                                }
+                            }
+                            else if(ListeFragment.listaKnjiga.vratiKnjigu(i).getAutor().equals(k.getAutor())) postojiKnjiga = true;
+                        }
+                    }
+                    if(postojiKnjiga == false){
+                        ListeFragment.listaKnjiga.dodajKnjigu(k);
+                        nazivKnjige.setText("");
+                        imeAutora.setText("");
+                        naslovnaStr.setImageBitmap(null);
+                        pom = null;
 
-                    Toast.makeText(getActivity(), R.string.Toast, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), R.string.Toast, Toast.LENGTH_SHORT).show();
+                    }
+                    else Toast.makeText(getActivity(), R.string.knjigaPostoji, Toast.LENGTH_SHORT).show();
+
                 }
                 else  Toast.makeText(getActivity(), R.string.unesiteSvePodatke, Toast.LENGTH_SHORT).show();
             }
