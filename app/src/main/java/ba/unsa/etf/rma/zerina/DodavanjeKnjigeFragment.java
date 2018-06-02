@@ -35,6 +35,7 @@ public class DodavanjeKnjigeFragment extends Fragment {
     private int REQUEST_CODE = 1;
     ImageView naslovnaStr;
     Bitmap pom;
+    public static Bitmap vrati;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
@@ -102,6 +103,8 @@ public class DodavanjeKnjigeFragment extends Fragment {
 
                 if(pom != null && !nazivK.isEmpty() && !imeA.isEmpty()) {
                     Knjiga k = new Knjiga(pom, nazivK, imeA, sKategorijaKnjige.getSelectedItem().toString());
+                    vrati = pom;
+
                     boolean postojiKnjiga = false;
                     for(int i=0; i<ListeFragment.listaKnjiga.brojElemenata(); i++){
                         if(ListeFragment.listaKnjiga.vratiKnjigu(i).getNaziv().equals(k.getNaziv())){
@@ -115,6 +118,7 @@ public class DodavanjeKnjigeFragment extends Fragment {
                         }
                     }
                     if(postojiKnjiga == false){
+                        long ind = KategorijeAkt.baza.dodajKnjigu(k);
                         ListeFragment.listaKnjiga.dodajKnjigu(k);
                         nazivKnjige.setText("");
                         imeAutora.setText("");

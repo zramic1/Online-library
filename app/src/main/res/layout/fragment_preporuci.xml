@@ -1,22 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <Spinner
+        android:id="@+id/sKontakti​"
+        android:layout_width="368dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
-        android:id="@+id/eNaslovna"
+        android:id="@+id/eNaslovna1"
         android:layout_width="80dp"
         android:layout_height="90dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteX="24dp"
-        tools:layout_editor_absoluteY="16dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
 
-        />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/sKontakti​"
+        app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/eNaziv"
+        android:id="@+id/eNaziv1"
         android:layout_width="251dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -28,12 +43,12 @@
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/eNaslovna"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eNaslovna1"
+        app:layout_constraintTop_toBottomOf="@id/sKontakti​"
         tools:ignore="MissingConstraints" />
 
     <TextView
-        android:id="@+id/eAutor"
+        android:id="@+id/eAutor1"
         android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
@@ -45,11 +60,11 @@
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/eNaslovna"
-        app:layout_constraintTop_toBottomOf="@+id/eNaziv" />
+        app:layout_constraintStart_toEndOf="@+id/eNaslovna1"
+        app:layout_constraintTop_toBottomOf="@+id/eNaziv1" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textView41"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -57,10 +72,10 @@
         android:text="@string/datumObjavljivanja"
         android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eAutor" />
+        app:layout_constraintTop_toBottomOf="@+id/eAutor1" />
 
     <TextView
-        android:id="@+id/eDatumObjavljivanja"
+        android:id="@+id/eDatumObjavljivanja1"
         android:layout_width="201dp"
         android:layout_height="20dp"
         android:layout_marginEnd="8dp"
@@ -69,11 +84,11 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView4"
-        app:layout_constraintTop_toBottomOf="@+id/eAutor" />
+        app:layout_constraintStart_toEndOf="@+id/textView41"
+        app:layout_constraintTop_toBottomOf="@+id/eAutor1" />
 
     <TextView
-        android:id="@+id/textView6"
+        android:id="@+id/textView61"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -81,10 +96,10 @@
         android:text="@string/brojStranica"
         android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
     <TextView
-        android:id="@+id/eBrojStranica"
+        android:id="@+id/eBrojStranica1"
         android:layout_width="193dp"
         android:layout_height="22dp"
         android:layout_marginStart="37dp"
@@ -92,11 +107,11 @@
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.741"
-        app:layout_constraintStart_toEndOf="@+id/textView6"
-        app:layout_constraintTop_toBottomOf="@+id/eDatumObjavljivanja" />
+        app:layout_constraintStart_toEndOf="@+id/textView61"
+        app:layout_constraintTop_toBottomOf="@+id/eDatumObjavljivanja1" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textView81"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
@@ -104,30 +119,30 @@
         android:text="@string/opis"
         android:textSize="17dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/textView61" />
 
     <TextView
-        android:id="@+id/eOpis"
+        android:id="@+id/eOpis1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="14dp"
         android:text="TextView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/textView81" />
 
     <Button
-        android:id="@+id/dPreporuci"
-        android:focusable="false"
-        android:layout_width="148dp"
-        android:layout_height="47dp"
-        android:layout_marginEnd="118dp"
-        android:layout_marginStart="118dp"
-        android:layout_marginTop="12dp"
-        android:text="@string/preporuci"
+        android:id="@+id/dPosalji​"
+        android:layout_width="139dp"
+        android:layout_height="51dp"
+        android:layout_marginEnd="122dp"
+        android:layout_marginStart="123dp"
+        android:gravity="center"
+        android:text="@string/posalji"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/eOpis" />
+        app:layout_constraintTop_toBottomOf="@id/eOpis1" />
+
+
 
 </android.support.constraint.ConstraintLayout>

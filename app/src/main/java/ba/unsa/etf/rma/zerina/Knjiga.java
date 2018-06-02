@@ -38,6 +38,15 @@ public class Knjiga implements Parcelable{
         this.vrstaKnjige = true;
     }
 
+    public Knjiga(URL slika, String naziv, String autor, String kategorija) {
+        this.slika = slika;
+        this.naziv = naziv;
+        this.autor = autor;
+        this.kategorija = kategorija;
+        this.oznacena = false;
+        this.vrstaKnjige = true;
+    }
+
     protected Knjiga(Parcel in) {
         id = in.readString();
         naziv = in.readString();
@@ -188,5 +197,7 @@ public class Knjiga implements Parcelable{
         dest.writeString(kategorija);
         dest.writeByte((byte) (vrstaKnjige ? 1 : 0));
     }
+
+
 
 }

@@ -70,6 +70,12 @@ public class Autor {
         this.imaAutora = imaAutora;
     }
 
+    public void vratiNaNulu(){
+        brojKnjiga = 0;
+    }
+
+    public void smanji() { brojKnjiga--;}
+
 
 
 }

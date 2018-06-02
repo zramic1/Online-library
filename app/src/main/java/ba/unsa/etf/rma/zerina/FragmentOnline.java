@@ -183,6 +183,7 @@ public class FragmentOnline extends Fragment implements DohvatiKnjige.IDohvatiKn
 
                             }
                             if (!postojiKnjiga) {
+                                long ind = KategorijeAkt.baza.dodajKnjigu(pomocnaListaKnjiga.get(i));
                                 ListeFragment.listaKnjiga.dodajKnjigu(pomocnaListaKnjiga.get(i));
                                 Toast.makeText(getActivity(), R.string.Toast, Toast.LENGTH_SHORT).show();
                             }

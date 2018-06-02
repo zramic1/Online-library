@@ -35,4 +35,8 @@ public class SveKnjige {
     public Knjiga vratiKnjigu(int i){
         return sveKnjige.get(i);
     }
+
+    public void ocisti(){
+        sveKnjige.clear();
+    }
 }

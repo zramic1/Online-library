@@ -20,5 +20,10 @@
     <string name="unesiteSvePodatke">Morate unijeti sve podatke</string>
     <string name="dodajKnjiguOnline">dodaj knjigu online</string>
     <string name="knjigaPostoji">Knjiga već postoji</string>
+    <string name="datumObjavljivanja">Datum objavljivanja:</string>
+    <string name="opis">Opis:</string>
+    <string name="brojStranica">Broj stranica:</string>
+    <string name="preporuci">Preporuči</string>
+    <string name="posalji">Pošalji</string>
 
 </resources>

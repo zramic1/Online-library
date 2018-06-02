@@ -2,6 +2,9 @@ package ba.unsa.etf.rma.zerina;
 
 import android.app.Fragment;
 import android.app.FragmentManager;
+import android.content.ContentValues;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -16,6 +19,10 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static ba.unsa.etf.rma.zerina.BazaOpenHelper.AUTOR_IME;
+import static ba.unsa.etf.rma.zerina.BazaOpenHelper.DATABASE_TABLE;
+import static ba.unsa.etf.rma.zerina.BazaOpenHelper.DATABASE_TABLE2;
+
 
 /**
  * Created by zerin on 5/14/2018.
@@ -26,7 +33,7 @@ public class ListeFragment extends Fragment {
     boolean postoji=false;
     public static ArrayList<String> lista = new ArrayList<String>();
     public static SveKnjige listaKnjiga = new SveKnjige();
-    ArrayList<Autor>autori;
+    public static ArrayList<Autor>autori = new ArrayList<Autor>();
     boolean autorPostoji = false;
     MojAdapter adapter;
     boolean oznacenaKategorija = false;
@@ -55,9 +62,6 @@ public class ListeFragment extends Fragment {
         dDodajKategoriju.setEnabled(false);
 
 
-
-
-
         adapter = new MojAdapter(getActivity(), lista);
 
         dKategorije.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +73,6 @@ public class ListeFragment extends Fragment {
                 dPretraga.setVisibility(View.VISIBLE);
                 dDodajKategoriju.setVisibility(View.VISIBLE);
                 tekstPretraga.setVisibility(View.VISIBLE);
-
 
 
             }
@@ -95,7 +98,22 @@ public class ListeFragment extends Fragment {
                         @Override
                         public void onClick(View v) {
                             String s = tekstPretraga.getText().toString();
-                            if(s != null && !s.isEmpty()) lista.add(s);
+                            if(s != null && !s.isEmpty()) {
+                                long index = KategorijeAkt.baza.dodajKategoriju(s);
+                                if(index != -1) {
+
+                                    String ind = String.valueOf(index);
+
+                                    String[] koloneRezultat1 = {BazaOpenHelper.KATEGORIJA_ID, BazaOpenHelper.KATEGORIJA_NAZIV};
+                                    String where1 = BazaOpenHelper.KATEGORIJA_ID + "=\'" + ind + "\'";
+                                    SQLiteDatabase db = KategorijeAkt.baza.getWritableDatabase();
+                                    Cursor k = db.query(DATABASE_TABLE, koloneRezultat1, where1, null, null, null, null);
+                                    int indexKoloneNaziv = k.getColumnIndexOrThrow(BazaOpenHelper.KATEGORIJA_NAZIV);
+                                    while (k.moveToNext()) {
+                                        lista.add(k.getString(indexKoloneNaziv));
+                                    }
+                                }
+                            }
                             adapter.notifyDataSetChanged();
                             tekstPretraga.setText("");
                             dPretraga.performClick();
@@ -107,50 +125,6 @@ public class ListeFragment extends Fragment {
                 postoji=false;
             }
         });
-
-
-        autori = new ArrayList<Autor>();
-
-
-        for(int i=0; i<listaKnjiga.brojElemenata();i++){
-            autorPostoji = false;
-            if (listaKnjiga.vratiKnjigu(i).isVrstaKnjige()) {
-                for (int j = 0; j < autori.size(); j++) {
-
-                        if (listaKnjiga.vratiKnjigu(i).getAutor().toUpperCase().equals(autori.get(j).getImeiPrezime().toUpperCase())) {
-                            autori.get(j).setImaAutora(true);
-                            autori.get(j).setBrojKnjiga();
-                            autorPostoji = true;
-                        }
-
-                }
-                if (autorPostoji == false) {
-                    Autor a = new Autor(listaKnjiga.vratiKnjigu(i).getAutor());
-                    autori.add(a);
-                }
-            }
-        }
-
-        for(int i=0; i<listaKnjiga.brojElemenata(); i++){
-            if(!listaKnjiga.vratiKnjigu(i).isVrstaKnjige()) {
-                ArrayList<Autor> autors = listaKnjiga.vratiKnjigu(i).getAutori();
-                for(int j=0; j<autors.size();j++){
-                    autorPostoji2 = false;
-                    for (int k=0; k<autori.size(); k++){
-                        if(autors.get(j).getImeiPrezime().toUpperCase().equals(autori.get(k).getImeiPrezime().toUpperCase())){
-                            autori.get(k).setImaAutora(true);
-                            autori.get(k).setBrojKnjiga();
-                            autorPostoji2 = true;
-                        }
-                    }
-                    if(autorPostoji2 == false) {
-                        Autor aa = new Autor(autors.get(j).getImeiPrezime());
-                        autori.add(aa);
-                    }
-                }
-            }
-        }
-
 
 
 

@@ -21,4 +21,9 @@
     <string name="unesiteSvePodatke">You must enter all data</string>
     <string name="dodajKnjiguOnline">add book online</string>
     <string name="knjigaPostoji">The book already exists</string>
+    <string name="datumObjavljivanja">Date of publication:</string>
+    <string name="opis">Description:</string>
+    <string name="brojStranica">Number of pages:</string>
+    <string name="preporuci">Recommend</string>
+    <string name="posalji">Send</string>
 </resources>
